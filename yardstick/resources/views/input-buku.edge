@@ -1,0 +1,41 @@
+@layout('master')
+
+@section('content')
+<center>
+    <h3>Input data buku</h3>
+  </center>
+  @if(flashMessage('notification'))
+    <div class="alert alert-success">
+      {{ flashMessage('notification') }}
+    </div>
+  @endif
+  <form method="POST" action="/store">
+    {{ csrfField() }}
+      <div class="form-group row">
+        <label for="judul" class="col-sm-2 col-form-label">Judul</label>
+        <div class="col-sm-10">
+          <input type="input" class="form-control" id="judul" name="judul" value="{{ old('judul')}}">
+          {{ elIf('<span style="color:red">$self</span>', getErrorFor('judul'), hasErrorFor('judul')) }}
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="tahun-terbit" class="col-sm-2 col-form-label">Tahun Terbit</label>
+        <div class="col-sm-10">
+          <input type="input" class="form-control" id="tahun-terbit" name="tahun_terbit" value="{{ old('tahun_terbit')}}">
+          {{ elIf('<span style="color:red">$self</span>', getErrorFor('tahun_terbit'), hasErrorFor('tahun_terbit')) }}
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="deskripsi" class="col-sm-2 col-form-label">Deskripsi</label>
+        <div class="col-sm-10">
+          <input type="input" class="form-control" id="deskripsi" name="deskripsi" value="{{ old('deskripsi')}}">
+          {{ elIf('<span style="color:red">$self</span>', getErrorFor('deskripsi'), hasErrorFor('deskripsi')) }}
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-10">
+          <button type="submit" class="btn btn-primary">Simpan</button>
+        </div>
+      </div>
+    </form>
+@endsection
